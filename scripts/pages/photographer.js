@@ -69,10 +69,20 @@ function profile(data) {
     .getElementById("main_contact")
     .insertAdjacentHTML("beforeend", photographerImg);
 }
+//Crée un conteneur div pour regrouper l'ensemble des médias
+const div = `
+<div id="media" > </div>
+`;
+
+document
+    .getElementById("main")
+    .insertAdjacentHTML("beforeend", div);
+
+
 
 //cree les médias
 function ProfileMedia(media) {
-  const { id, image, title,photographerId,video } = media;
+  const { id, image, title,photographerId,video,likes } = media;
 
   const photo = `../../assets/images/photos/${photographerId}/${image}
   `;
@@ -80,19 +90,25 @@ function ProfileMedia(media) {
 
   if (video === undefined) {
   const mediaPhotographe = `
-  <div class="media">
+ 
   <figure class="media-info">
-    <img class="photographerImg" src=${photo} alt=${title}>
+  <div class="img-media">
+    <img class="mediaImg" src=${photo} alt=${title}>
+    </div>
+    <div class="media-title-like">
     <figcaption class="media-title">${title}</figcaption>
+  
     <div class="like">
-<p> ${likes} </p>
+<p > ${likes} </p>
 <i class="fa-solid fa-heart"></i>
-    </div>
+</div>
+</div>
+   
     </figure>
-    </div>
+    
   `;
   document
-  .getElementById("main")
+  .getElementById("media")
   .insertAdjacentHTML("beforeend", mediaPhotographe);
   } 
 
@@ -100,23 +116,26 @@ function ProfileMedia(media) {
 else{
  
   const mediaPhotographe = `
-  <div class="media">
+ 
   <figure class="media-info">
-    <video  width="320" height="240" autoplay class="video" src=${videoMedia} type="video/mp4" >
-
+  <div class="img-media">
+    <video  class="video" src=${videoMedia} type="video/mp4" >
+    </div>
+    <div class="media-title-like">
     <figcaption class="media-title">${title}</figcaption>
     <div class="like">
 <p> ${likes} </p>
 <i class="fa-solid fa-heart"></i>
-    </div>
+</div>
+</div>
     </figure>
-    </div>
+   
   `;
 
 
 
   document
-  .getElementById("main")
+  .getElementById("media")
   .insertAdjacentHTML("beforeend", mediaPhotographe);
 }
 
