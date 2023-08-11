@@ -44,20 +44,23 @@ h1 {
   align-items: center;
   flex-direction: column;
 }
-
+#cader h2,
 .photographer_section article h2 {
   color: #d3573c;
   font-size: 36px;
   margin-bottom: 0;
 }
-
+#cader h2{
+  font-size:64px
+}
+.photographerImg,
 .photographer_section article img {
   height: 200px;
   width: 200px;
   border-radius: 50%;
   object-fit: cover;
 }
-
+ 
 .photographer_section article span {
   color: #901c1c;
   font-size: 13px;
@@ -65,10 +68,15 @@ h1 {
   font-weight: bold;
   line-height: 16.93px;
 }
+
+#cader p:last-child,
 .photographer_section article p {
   color: black;
   font-size: 10px;
   margin: 0;
+}
+#cader p:last-child{
+  font-size: 18px;
 }
 .photographer_section article p:last-child {
   color: #757575;
