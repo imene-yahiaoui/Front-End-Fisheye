@@ -100,7 +100,7 @@ function ProfileMedia(media) {
   
     <div class="like">
 <p > ${likes} </p>
-<i class="fa-solid fa-heart"></i>
+<i class="fa-solid fa-heart" aria-label="likes"></i>
 </div>
 </div>
    
