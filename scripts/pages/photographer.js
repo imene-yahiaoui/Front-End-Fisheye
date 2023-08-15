@@ -74,27 +74,23 @@ const div = `
 <div id="media" > </div>
 `;
 
-document
-    .getElementById("main")
-    .insertAdjacentHTML("beforeend", div);
-
-
+document.getElementById("main").insertAdjacentHTML("beforeend", div);
 
 //cree les médias
 function ProfileMedia(media) {
-  const { id, image, title,photographerId,video,likes } = media;
+  const { id, image, title, photographerId, video, likes } = media;
 
   const photo = `../../assets/images/photos/${photographerId}/${image}
   `;
   const videoMedia = `../../assets/images/photos/${photographerId}/${video}`;
-
+  //si ya pas des videos
   if (video === undefined) {
-  const mediaPhotographe = `
+    const mediaPhotographe = `
  
   <figure class="media-info">
-  <div class="img-media">
+  <a href=${photo} class="img-media">
     <img class="mediaImg" src=${photo} alt=${title}>
-    </div>
+    </a>
     <div class="media-title-like">
     <figcaption class="media-title">${title}</figcaption>
   
@@ -107,20 +103,19 @@ function ProfileMedia(media) {
     </figure>
     
   `;
-  document
-  .getElementById("media")
-  .insertAdjacentHTML("beforeend", mediaPhotographe);
-  } 
+    document
+      .getElementById("media")
+      .insertAdjacentHTML("beforeend", mediaPhotographe);
+  }
 
- 
-else{
- 
-  const mediaPhotographe = `
+  //si il ya  des videos
+  else {
+    const mediaPhotographe = `
  
   <figure class="media-info">
-  <div class="img-media">
+  <a href=${photo} class="img-media">
     <video  class="video" src=${videoMedia} type="video/mp4" >
-    </div>
+    </a>
     <div class="media-title-like">
     <figcaption class="media-title">${title}</figcaption>
     <div class="like">
@@ -132,11 +127,51 @@ else{
    
   `;
 
+    document
+      .getElementById("media")
+      .insertAdjacentHTML("beforeend", mediaPhotographe);
+  }
 
 
-  document
-  .getElementById("media")
-  .insertAdjacentHTML("beforeend", mediaPhotographe);
+//cree le lightbox
+class Lightbox {
+  static init() {
+    
+    const links = document.querySelectorAll(
+      'a[href$=".png"], a[href$=".jpeg"], a[href$=".jpg"]'
+    );
+       console.log(links) 
+    links.forEach((link) =>
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        // console.log("Link clicked"); // Add this line
+        new Lightbox(e.currentTarget.getAttribute("href"));
+      })
+    );
+  }
+
+  constructor(url) {
+    const element = this.buildDom(url);
+    // console.log("laaaaaaaaaaa", element); // Add this line
+    document.body.appendChild(element);
+  }
+  buildDom(url) {
+    const dom = document.createElement("div");
+    dom.classList.add("lightbox");
+    dom.innerHTML = `
+      <i class="fa-solid fa-x"></i>
+      <i class="fa-solid fa-chevron-right"></i>
+      <i class="fa-solid fa-chevron-left"></i>
+      <div class="lightbox-container">
+        <img src="${url}" alt="">
+      </div>
+    `;
+    console.log("Script loaded");
+    return dom;
+  }
 }
 
+
+
+Lightbox.init();
 }
