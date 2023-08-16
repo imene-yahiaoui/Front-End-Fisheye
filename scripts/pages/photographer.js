@@ -88,8 +88,8 @@ function ProfileMedia(media) {
     const mediaPhotographe = `
  
   <figure class="media-info">
-  <a href=${photo} class="img-media">
-    <img class="mediaImg" src=${photo} alt=${title}>
+  <a href=${photo} class="img-media"  data-title="${title}">
+    <img class="mediaImg" src=${photo} alt="${title}">
     </a>
     <div class="media-title-like">
     <figcaption class="media-title">${title}</figcaption>
@@ -113,7 +113,7 @@ function ProfileMedia(media) {
     const mediaPhotographe = `
  
   <figure class="media-info">
-  <a href=${photo} class="img-media">
+  <a href=${videoMedia} class="img-media" data-title="${title}">
     <video  class="video" src=${videoMedia} type="video/mp4" >
     </a>
     <div class="media-title-like">
@@ -132,46 +132,61 @@ function ProfileMedia(media) {
       .insertAdjacentHTML("beforeend", mediaPhotographe);
   }
 
+  //cree le lightbox
+  class Lightbox {
+    static init() {
+      const links = document.querySelectorAll(
+        'a[href$=".png"], a[href$=".jpeg"], a[href$=".jpg"], a[href$=".mp4"]'
+      );
 
-//cree le lightbox
-class Lightbox {
-  static init() {
-    
-    const links = document.querySelectorAll(
-      'a[href$=".png"], a[href$=".jpeg"], a[href$=".jpg"]'
-    );
-       console.log(links) 
-    links.forEach((link) =>
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        // console.log("Link clicked"); // Add this line
-        new Lightbox(e.currentTarget.getAttribute("href"));
-      })
-    );
-  }
+      console.log(links);
+      links.forEach((link) =>
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const href = link.getAttribute("href");
+          const title = link.getAttribute("data-title");
+          new Lightbox(href, title);
+        })
+      );
+    }
 
-  constructor(url) {
-    const element = this.buildDom(url);
-    // console.log("laaaaaaaaaaa", element); // Add this line
-    document.body.appendChild(element);
-  }
-  buildDom(url) {
-    const dom = document.createElement("div");
-    dom.classList.add("lightbox");
-    dom.innerHTML = `
-      <i class="fa-solid fa-x"></i>
+    constructor(url, titre) {
+      const element = this.buildDom(url, titre);
+
+      document.body.appendChild(element);
+    }
+    buildDom(url, titre) {
+      const dom = document.createElement("div");
+      dom.classList.add("lightbox");
+      //di il ya un video
+      if (url.endsWith(".mp4")) {
+        dom.innerHTML = `
+      <i class="fa-solid fa-x" id="close"></i>  
+        <i class="fa-solid fa-chevron-right"></i>
+        <i class="fa-solid fa-chevron-left"></i>
+        <div class="lightbox-container">
+        <video  class="video" src=${url} type="video/mp4" >
+         
+        </div>
+        <P class="media-title">${titre}</P>
+      `;
+        //si il yas pas de video
+      } else {
+        dom.innerHTML = `
+    <i class="fa-solid fa-x" id="close"></i>  
       <i class="fa-solid fa-chevron-right"></i>
       <i class="fa-solid fa-chevron-left"></i>
       <div class="lightbox-container">
-        <img src="${url}" alt="">
+     
+      <img src="${url}" alt="${titre}">
       </div>
+      <P class="media-title">${titre}</P>
     `;
-    console.log("Script loaded");
-    return dom;
+      }
+
+      return dom;
+    }
   }
-}
 
-
-
-Lightbox.init();
+  Lightbox.init();
 }
