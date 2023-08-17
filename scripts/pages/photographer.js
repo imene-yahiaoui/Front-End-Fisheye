@@ -152,7 +152,6 @@ function ProfileMedia(media) {
 
     constructor(url, titre) {
       const element = this.buildDom(url, titre);
-
       document.body.appendChild(element);
     }
     buildDom(url, titre) {
@@ -161,26 +160,31 @@ function ProfileMedia(media) {
       //di il ya un video
       if (url.endsWith(".mp4")) {
         dom.innerHTML = `
+        <div class="lightbox-div">
       <i class="fa-solid fa-x" id="close"></i>  
         <i class="fa-solid fa-chevron-right"></i>
         <i class="fa-solid fa-chevron-left"></i>
         <div class="lightbox-container">
         <video  class="video" src=${url} type="video/mp4" >
-         
-        </div>
         <P class="media-title">${titre}</P>
+        </div>
+       
+        </div>
       `;
         //si il yas pas de video
       } else {
         dom.innerHTML = `
+        <div class="lightbox-div">
     <i class="fa-solid fa-x" id="close"></i>  
       <i class="fa-solid fa-chevron-right"></i>
       <i class="fa-solid fa-chevron-left"></i>
       <div class="lightbox-container">
      
       <img src="${url}" alt="${titre}">
-      </div>
       <P class="media-title">${titre}</P>
+      </div>
+     
+      </div>
     `;
       }
 
