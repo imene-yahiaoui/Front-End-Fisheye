@@ -152,21 +152,35 @@ function ProfileMedia(media) {
 
     constructor(url, titre) {
       this.element = this.buildDom(url, titre);
+      this.onKeyUp = this.onKeyUp.bind(this);
       document.body.appendChild(this.element);
+      document.addEventListener("keyup", this.onKeyUp);
     }
 
+    //function close lightbox avec clavier
+    onKeyUp(e) {
+      if (e.key === "Escape" || e.key === "Esc") {
+        this.close(e);
+      }
+    }
     //function close lightbox
     close() {
       const lightboxes = document.querySelectorAll(".lightbox");
       lightboxes.forEach((lightbox) => {
         lightbox.classList.add("fadeOut");
       });
-
+  
       window.setTimeout(() => {
         lightboxes.forEach((lightbox) => {
-          lightbox.parentElement.removeChild(lightbox);
+          if (lightbox.parentElement) {
+            lightbox.parentElement.removeChild(lightbox);
+          }
         });
       }, 500);
+
+
+  //suprission d'EventListener apres la  fermeture de lghitbox 
+      document.removeEventListener("keyup", this.onKeyUp);
     }
 
     buildDom(url, titre) {
