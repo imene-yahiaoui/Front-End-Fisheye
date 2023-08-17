@@ -1,6 +1,5 @@
 // Récupérer l'id depuis l'URL
 var idUrl = window.location.search.substring(4);
-console.log(idUrl);
 
 // Récupérer les données du id
 const getProfile = async () => {
@@ -20,7 +19,6 @@ const getProfile = async () => {
         (profil) => profil.photographerId === Number(idUrl)
       );
 
-      console.log(photographers);
       console.log(media);
 
       return {
@@ -39,7 +37,7 @@ const processData = async () => {
   if (profileData) {
     const photographer = profileData.photographers[0];
     profile(photographer);
-    profileData.media.forEach(ProfileMedia); // Appeler ProfileMedia pour chaque média
+    profileData.media.forEach((media) => ProfileMedia(media, photographer)); // Appeler ProfileMedia pour chaque média, et aussi photographer pour reciprer price
   }
 };
 
@@ -47,7 +45,7 @@ processData();
 
 //function pour créer les éléments HTML
 function profile(data) {
-  const { name, portrait, city, country, tagline } = data;
+  const { name, portrait, city, country, tagline, price } = data;
   const picture = `assets/photographers/${portrait}`;
 
   const photographerInfo = `
@@ -55,6 +53,7 @@ function profile(data) {
       <h2>${name}</h2>
       <p>${city}, ${country}</p>
       <p>${tagline}</p>
+      
     </div>
   `;
 
@@ -77,8 +76,9 @@ const div = `
 document.getElementById("main").insertAdjacentHTML("beforeend", div);
 
 //cree les médias
-function ProfileMedia(media) {
+function ProfileMedia(media, data) {
   const { id, image, title, photographerId, video, likes } = media;
+  const { price } = data;
 
   const photo = `../../assets/images/photos/${photographerId}/${image}
   `;
@@ -132,26 +132,52 @@ function ProfileMedia(media) {
       .insertAdjacentHTML("beforeend", mediaPhotographe);
   }
 
+  /////////////affiche le totel likes
+  const mediaInfoElements = document.querySelectorAll(".media-info");
+  let totalLikes = 0;
+
+  mediaInfoElements.forEach((element) => {
+    const likes = parseInt(element.querySelector(".like p").textContent, 10);
+    totalLikes += likes;
+  });
+
+  console.log(totalLikes);
+
+  //cree tarif box
+  const tarifBox = `
+  <div class="tarif-box">
+  <div class="like-box">
+<p>${totalLikes}</p>
+<i class="fa-solid fa-heart black"></i>
+</div>
+<p> ${price}€  / jour </p>
+    </div>
+    
+  `;
+  document.getElementById("media").insertAdjacentHTML("beforeend", tarifBox);
+
   //cree le lightbox
   class Lightbox {
     static init() {
+      this.activeLightbox = null; // Initialize the active lightbox reference
+
       const links = document.querySelectorAll(
         'a[href$=".png"], a[href$=".jpeg"], a[href$=".jpg"], a[href$=".mp4"]'
       );
 
-      console.log(links);
       links.forEach((link) =>
         link.addEventListener("click", (e) => {
           e.preventDefault();
           const href = link.getAttribute("href");
+
           const title = link.getAttribute("data-title");
           new Lightbox(href, title);
         })
       );
     }
-
     constructor(url, titre) {
       this.element = this.buildDom(url, titre);
+
       this.onKeyUp = this.onKeyUp.bind(this);
       document.body.appendChild(this.element);
       document.addEventListener("keyup", this.onKeyUp);
@@ -169,7 +195,7 @@ function ProfileMedia(media) {
       lightboxes.forEach((lightbox) => {
         lightbox.classList.add("fadeOut");
       });
-  
+
       window.setTimeout(() => {
         lightboxes.forEach((lightbox) => {
           if (lightbox.parentElement) {
@@ -178,8 +204,7 @@ function ProfileMedia(media) {
         });
       }, 500);
 
-
-  //suprission d'EventListener apres la  fermeture de lghitbox 
+      //suprission d'EventListener apres la  fermeture de lghitbox
       document.removeEventListener("keyup", this.onKeyUp);
     }
 
@@ -220,6 +245,11 @@ function ProfileMedia(media) {
       dom
         .querySelector(".close")
         .addEventListener("click", this.close.bind(this));
+
+      // dom
+      // .querySelector(".right")
+      // .addEventListener("click", this.showNextSlide.bind(this));
+
       return dom;
     }
   }

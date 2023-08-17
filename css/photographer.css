@@ -159,7 +159,7 @@ form input {
   background-color: white;
   z-index: 10;
   overflow: auto;
- 
+  /* display: none; */
   transition:opacity.3s;
 }
 .lightbox-div {
@@ -215,4 +215,36 @@ margin-bottom: 10px;
 }
 .lightbox.fadeOut{
   opacity: 0;
+}
+
+ 
+/* 
+.lightbox.active {
+  display: block;
+} */
+
+.tarif-box{
+
+  width:376px ;
+  height:89 ;
+  background-color: #DB8876;
+  display: flex;
+  flex-direction: row;
+  position:fixed;
+  bottom:0;
+  right: 395px;
+font-size:24px;
+color: black;
+font-weight:500;
+justify-content: space-around;
+ 
+}
+.like-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 15px;
+}
+.black{
+  color: black;
 }
