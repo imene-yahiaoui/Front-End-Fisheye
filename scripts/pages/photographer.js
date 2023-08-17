@@ -151,9 +151,24 @@ function ProfileMedia(media) {
     }
 
     constructor(url, titre) {
-      const element = this.buildDom(url, titre);
-      document.body.appendChild(element);
+      this.element = this.buildDom(url, titre);
+      document.body.appendChild(this.element);
     }
+
+    //function close lightbox
+    close() {
+      const lightboxes = document.querySelectorAll(".lightbox");
+      lightboxes.forEach((lightbox) => {
+        lightbox.classList.add("fadeOut");
+      });
+
+      window.setTimeout(() => {
+        lightboxes.forEach((lightbox) => {
+          lightbox.parentElement.removeChild(lightbox);
+        });
+      }, 500);
+    }
+
     buildDom(url, titre) {
       const dom = document.createElement("div");
       dom.classList.add("lightbox");
@@ -161,9 +176,9 @@ function ProfileMedia(media) {
       if (url.endsWith(".mp4")) {
         dom.innerHTML = `
         <div class="lightbox-div">
-      <i class="fa-solid fa-x" id="close"></i>  
-        <i class="fa-solid fa-chevron-right"></i>
-        <i class="fa-solid fa-chevron-left"></i>
+        <button class="close fa-x">  </button >
+        <button class="right">     <i class="fa-solid fa-chevron-right"></i> </button >
+        <button class="left">      <i class="fa-solid fa-chevron-left"></i>  </button >
         <div class="lightbox-container">
         <video  class="video" src=${url} type="video/mp4" >
         <P class="media-title">${titre}</P>
@@ -175,9 +190,10 @@ function ProfileMedia(media) {
       } else {
         dom.innerHTML = `
         <div class="lightbox-div">
-    <i class="fa-solid fa-x" id="close"></i>  
-      <i class="fa-solid fa-chevron-right"></i>
-      <i class="fa-solid fa-chevron-left"></i>
+    <button class="close fa-x">  </button >
+    <button class="right">     <i class="fa-solid fa-chevron-right"></i> </button >
+    <button class="left">      <i class="fa-solid fa-chevron-left"></i>  </button >
+   
       <div class="lightbox-container">
      
       <img src="${url}" alt="${titre}">
@@ -187,7 +203,9 @@ function ProfileMedia(media) {
       </div>
     `;
       }
-
+      dom
+        .querySelector(".close")
+        .addEventListener("click", this.close.bind(this));
       return dom;
     }
   }

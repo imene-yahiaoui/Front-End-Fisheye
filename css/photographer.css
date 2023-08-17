@@ -159,6 +159,8 @@ form input {
   background-color: white;
   z-index: 10;
   overflow: auto;
+ 
+  transition:opacity.3s;
 }
 .lightbox-div {
   margin-top: 40px;
@@ -193,9 +195,11 @@ margin-bottom: 10px;
   position: relative;
   left: 92%;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
-.fa-chevron-left,
-.fa-chevron-right {
+.left,
+.right {
   top: 50%;
   color: #901c1c;
   font-size: 50px;
@@ -203,7 +207,12 @@ margin-bottom: 10px;
   z-index: 11;
   cursor: pointer;
   position: relative;
+  border: none;
+  background-color: transparent;
 }
-.fa-chevron-left {
+.left {
   left: 0%;
+}
+.lightbox.fadeOut{
+  opacity: 0;
 }
