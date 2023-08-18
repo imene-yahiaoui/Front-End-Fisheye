@@ -1,4 +1,6 @@
 
+
+
 //ouvre   modal contact
 function displayModal() {
   const modal = document.getElementById("contact_modal");
@@ -18,7 +20,7 @@ document.getElementById('closeModal') .addEventListener('click',closeModal)
 
 const form = document.getElementById('form')
 const first = document.querySelector('.first')
-
+ 
 const contactInfo=`
 
 <div>
@@ -38,3 +40,4 @@ required/>
 `
 
 first.insertAdjacentHTML("afterend", contactInfo);
+ 
