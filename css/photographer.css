@@ -1,5 +1,12 @@
 #contact_modal {
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  z-index: 20;
 }
 
 .photograph-header {
@@ -105,7 +112,6 @@ form input {
 .media-info {
   width: 350px;
   height: 351px;
-  background-color: aqua;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -115,7 +121,6 @@ form input {
   width: 100%;
   height: 80%;
   border-radius: 5px;
-  background-color: blueviolet;
 }
 .video,
 .mediaImg {

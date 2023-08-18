@@ -12,26 +12,26 @@
   <title>Fisheye - photographe </title>
 
 
-<!--fontawesome-->
-<script src="https://kit.fontawesome.com/f266b52627.js" crossorigin="anonymous"></script>
+  <!--fontawesome-->
+  <script src="https://kit.fontawesome.com/f266b52627.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <header>
     <a href="./index.html">
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
     </a>
   </header>
   <main id="main">
     <div class="photograph-header" id="main_contact">
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <button class="contact_button" id="openModal">Contactez-moi</button>
     </div>
   </main>
   <div id="contact_modal">
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" alt="icon" onclick="closeModal()" />
+        <img src="assets/icons/close.svg" alt="icon" id="closeModal" />
       </header>
       <form>
         <div>
