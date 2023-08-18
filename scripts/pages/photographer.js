@@ -246,10 +246,6 @@ function ProfileMedia(media, data) {
         .querySelector(".close")
         .addEventListener("click", this.close.bind(this));
 
-      // dom
-      // .querySelector(".right")
-      // .addEventListener("click", this.showNextSlide.bind(this));
-
       return dom;
     }
   }
