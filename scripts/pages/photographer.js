@@ -1,66 +1,49 @@
 // Récupérer l'id depuis l'URL
 var idUrl = window.location.search.substring(4);
 
-
-
 //cree les médias
 function ProfileMedia(media, data) {
   const { id, image, title, photographerId, video, likes } = media;
   const { price } = data;
-
   const photo = `../../assets/images/photos/${photographerId}/${image}
   `;
   const videoMedia = `../../assets/images/photos/${photographerId}/${video}`;
-  //si ya pas des videos
+
+  let thisMedia;
+
   if (video === undefined) {
-    const mediaPhotographe = `
- 
-  <figure class="media-info">
-  <a href=${photo} class="img-media"  data-title="${title}">
-    <img class="mediaImg" src=${photo} alt="${title}">
-    </a>
-    <div class="media-title-like">
-    <figcaption class="media-title">${title}</figcaption>
-  
-    <div class="like">
-<p > ${likes} </p>
-<i class="fa-solid fa-heart" aria-label="likes"></i>
-</div>
-</div>
+    thisMedia = `
+      <a href=${photo} class="img-media" data-title="${title}">
+        <img class="mediaImg" src=${photo} alt="${title}">
+      </a>
+    `;
+  } else {
+    thisMedia = `
+      <a href=${videoMedia} class="img-media" data-title="${title}">
+        <video class="video" src=${videoMedia} type="video/mp4"></video>
+      </a>
+    `;
+  }
+
+  const mediaPhotographe = `
+   <figure class="media-info">
+  ${thisMedia}
+     <div class="media-title-like">
+       <figcaption class="media-title">${title}</figcaption>
+        <div class="like">
+         <p > ${likes} </p>
+         <i class="fa-solid fa-heart" aria-label="likes"></i>
+        </div>
+     </div>
    
     </figure>
     
   `;
-    document
-      .getElementById("media")
-      .insertAdjacentHTML("beforeend", mediaPhotographe);
-  }
+  document
+    .getElementById("media")
+    .insertAdjacentHTML("beforeend", mediaPhotographe);
 
-  //si il ya  des videos
-  else {
-    const mediaPhotographe = `
- 
-  <figure class="media-info">
-  <a href=${videoMedia} class="img-media" data-title="${title}">
-    <video  class="video" src=${videoMedia} type="video/mp4" >
-    </a>
-    <div class="media-title-like">
-    <figcaption class="media-title">${title}</figcaption>
-    <div class="like">
-<p> ${likes} </p>
-<i class="fa-solid fa-heart"></i>
-</div>
-</div>
-    </figure>
-   
-  `;
-
-    document
-      .getElementById("media")
-      .insertAdjacentHTML("beforeend", mediaPhotographe);
-  }
-
-  /////////////affiche le totel likes
+  /////////////affiche le total des likes
   const mediaInfoElements = document.querySelectorAll(".media-info");
   let totalLikes = 0;
 
@@ -73,12 +56,12 @@ function ProfileMedia(media, data) {
 
   //cree tarif box
   const tarifBox = `
-  <div class="tarif-box">
-  <div class="like-box">
-<p>${totalLikes}</p>
-<i class="fa-solid fa-heart black"></i>
-</div>
-<p> ${price}€  / jour </p>
+   <div class="tarif-box">
+    <div class="like-box">
+    <p>${totalLikes}</p>
+    <i class="fa-solid fa-heart black"></i>
+  </div>
+    <p> ${price}€  / jour </p>
     </div>
     
   `;
@@ -87,7 +70,7 @@ function ProfileMedia(media, data) {
   //cree le lightbox
   class Lightbox {
     static init() {
-      // this.activeLightbox = null; // Initialize the active lightbox reference
+   
 
       const links = document.querySelectorAll(
         'a[href$=".png"], a[href$=".jpeg"], a[href$=".jpg"], a[href$=".mp4"]'
@@ -139,37 +122,27 @@ function ProfileMedia(media, data) {
     buildDom(url, titre) {
       const dom = document.createElement("div");
       dom.classList.add("lightbox");
-      //di il ya un video
+      let mediaLightbox;
+
       if (url.endsWith(".mp4")) {
-        dom.innerHTML = `
+        mediaLightbox = `  <video  class="video" src=${url} type="video/mp4" >`;
+      } else {
+        mediaLightbox = ` <img src="${url}" alt="${titre}">`;
+      }
+
+      dom.innerHTML = `
         <div class="lightbox-div">
         <button class="close fa-x">  </button >
         <button class="right">     <i class="fa-solid fa-chevron-right"></i> </button >
         <button class="left">      <i class="fa-solid fa-chevron-left"></i>  </button >
         <div class="lightbox-container">
-        <video  class="video" src=${url} type="video/mp4" >
+      ${mediaLightbox}
         <P class="media-title">${titre}</P>
         </div>
        
         </div>
       `;
-        //si il yas pas de video
-      } else {
-        dom.innerHTML = `
-        <div class="lightbox-div">
-    <button class="close fa-x">  </button >
-    <button class="right">     <i class="fa-solid fa-chevron-right"></i> </button >
-    <button class="left">      <i class="fa-solid fa-chevron-left"></i>  </button >
-   
-      <div class="lightbox-container">
-     
-      <img src="${url}" alt="${titre}">
-      <P class="media-title">${titre}</P>
-      </div>
-     
-      </div>
-    `;
-      }
+
       dom
         .querySelector(".close")
         .addEventListener("click", this.close.bind(this));
@@ -179,5 +152,4 @@ function ProfileMedia(media, data) {
   }
 
   Lightbox.init();
-
 }
