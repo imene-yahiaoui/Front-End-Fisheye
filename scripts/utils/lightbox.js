@@ -14,7 +14,6 @@ class Lightbox {
     );
 
     console.log(titles);
-
     links.forEach((link) =>
       link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -30,15 +29,31 @@ class Lightbox {
     this.title = title;
     this.titles = titles;
     this.onKeyUp = this.onKeyUp.bind(this);
+    this.nexKey = this.nexKey.bind(this);
+    this.prevKey = this.prevKey.bind(this);
     document.body.appendChild(this.element);
     document.addEventListener("keyup", this.onKeyUp);
+    document.addEventListener("keyup", this.nexKey);
+    document.addEventListener("keyup", this.prevKey);
     this.url = url;
   }
-
+  /////les fuction avec le clavier////
   //function close lightbox avec clavier
   onKeyUp(e) {
     if (e.key === "Escape" || e.key === "Esc") {
       this.close(e);
+    }
+  }
+  ///fonction right avec le clavier
+  nexKey(e) {
+    if (e.key === "ArrowRight") {
+      this.next(e);
+    }
+  }
+  ///fonction left avec le clavier
+  prevKey(e) {
+    if (e.key === "ArrowLeft") {
+      this.prev(e);
     }
   }
   //function close lightbox
@@ -58,34 +73,30 @@ class Lightbox {
 
     //suprission d'EventListener apres la  fermeture de lghitbox
     document.removeEventListener("keyup", this.onKeyUp);
+    document.removeEventListener("keyup", this.prevKey);
+    document.removeEventListener("keyup", this.nexKey);
   }
-
+  //function prev
   prev() {
-    const currentIndex = this.images.indexOf(this.url);// Trouver l'indice du url actuel
+    const currentIndex = this.images.indexOf(this.url); // Trouver l'indice du url actuel
     const currentTitleIndex = this.titles.indexOf(this.title); // Trouver l'indice du titre actuel
-
-    const numImages = this.images.length;// Nombre total de images
+    const numImages = this.images.length; // Nombre total de images
     const numTitles = this.titles.length; // Nombre total de titres
-
     const prevIndex = (currentIndex - 1 + numImages) % numImages;
     const prevTitleIndex = (currentTitleIndex - 1 + numTitles) % numTitles; // Indice du titre précédent
-
     this.url = this.images[prevIndex];
     this.title = this.titles[prevTitleIndex]; // Utilise le titre précédent
     this.updateMediaContent();
   }
 
-  // Function to display the next image in the lightbox
+  // function  next
   next() {
-    const currentIndex = this.images.indexOf(this.url);// Trouver l'indice du url actuel
+    const currentIndex = this.images.indexOf(this.url); // Trouver l'indice du url actuel
     const currentTitleIndex = this.titles.indexOf(this.title); // Trouver l'indice du titre actuel
-
-    const numImages = this.images.length;// Nombre total de images
+    const numImages = this.images.length; // Nombre total de images
     const numTitles = this.titles.length; // Nombre total de titres
-
     const nextIndex = (currentIndex + 1) % numImages;
     const nextTitleIndex = (currentTitleIndex + 1) % numTitles; // Indice du titre suivant
-
     this.url = this.images[nextIndex];
     this.title = this.titles[nextTitleIndex]; // Utilise le titre suivant
     this.updateMediaContent();
@@ -98,7 +109,6 @@ class Lightbox {
       : `<img src="${this.url}" alt="${this.titles}">`;
 
     const mediaTitle = `<p class="media-title">${this.title}</p>`;
-
     const lightboxContainer = this.element.querySelector(".lightbox-container");
     lightboxContainer.innerHTML = mediaLightbox + mediaTitle;
   }
@@ -107,8 +117,6 @@ class Lightbox {
     const mediaLightbox = url.endsWith(".mp4")
       ? `<video class="video" src=${url} type="video/mp4"></video>`
       : `<img src="${url}" alt="${title}">`;
-
-     
   }
 
   buildDom(url, title) {
