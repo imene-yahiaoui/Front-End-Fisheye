@@ -105,7 +105,8 @@ class Lightbox {
   // Function de update le media dans lightbox
   updateMediaContent() {
     const mediaLightbox = this.url.endsWith(".mp4")
-      ? `<video class="video" src=${this.url} type="video/mp4"></video>`
+      ? `<video class="video" controls>
+      <source src="${url}" type="video/mp4"> </video>`
       : `<img src="${this.url}" alt="${this.titles}">`;
 
     const mediaTitle = `<p class="media-title">${this.title}</p>`;
@@ -115,7 +116,10 @@ class Lightbox {
 
   buildImageContent(url, title) {
     const mediaLightbox = url.endsWith(".mp4")
-      ? `<video class="video" src=${url} type="video/mp4"></video>`
+      ? ` 
+      <video class="video" controls> <source src="${url}" type="video/mp4"> </video>
+    
+    `
       : `<img src="${url}" alt="${title}">`;
   }
 
@@ -125,7 +129,10 @@ class Lightbox {
 
     // la condition si une img ou video
     const mediaLightbox = url.endsWith(".mp4")
-      ? `<video class="video" src=${url} type="video/mp4"></video>`
+      ? `<video class="video" controls>
+      <source src="${url}" type="video/mp4">
+       .
+    </video>`
       : `<img src="${url}" alt="${title}">`;
 
     dom.innerHTML = `
