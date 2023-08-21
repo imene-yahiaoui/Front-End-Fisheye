@@ -1,41 +1,38 @@
 //cree le lightbox
 class Lightbox {
-
   static init() {
- 
-
-
     const links = Array.from(
       document.querySelectorAll(
         'a[href$=".png"], a[href$=".jpeg"], a[href$=".jpg"], a[href$=".mp4"]'
       )
-
     );
     const images = links.map((link) => link.getAttribute("href"));
-    // console.log("gaaalry", images);
-    let a=0
-    
-    console.log("boucle ",a);
-    links.forEach((link) =>
+    const getAllTitles = Array.from(document.querySelectorAll("a[data-title]"));
+    //recupre tout les titres
+    const titles = getAllTitles.map((getAllTitle) =>
+      getAllTitle.getAttribute("data-title")
+    );
 
+    console.log(titles);
+
+    links.forEach((link) =>
       link.addEventListener("click", (e) => {
         e.preventDefault();
         const href = e.currentTarget.getAttribute("href");
         const title = e.currentTarget.getAttribute("data-title");
-a=a+1
-console.log("boucle 2 ",a);
-        new Lightbox(href, title, images);
+        new Lightbox(href, title, images, titles);
       })
     );
-        }
-  constructor(url, title, images) {
+  }
+  constructor(url, title, images, titles) {
     this.element = this.buildDom(url, title);
     this.images = images;
+    this.title = title;
+    this.titles = titles;
     this.onKeyUp = this.onKeyUp.bind(this);
     document.body.appendChild(this.element);
     document.addEventListener("keyup", this.onKeyUp);
     this.url = url;
-  
   }
 
   //function close lightbox avec clavier
@@ -63,18 +60,55 @@ console.log("boucle 2 ",a);
     document.removeEventListener("keyup", this.onKeyUp);
   }
 
+  prev() {
+    const currentIndex = this.images.indexOf(this.url);// Trouver l'indice du url actuel
+    const currentTitleIndex = this.titles.indexOf(this.title); // Trouver l'indice du titre actuel
 
+    const numImages = this.images.length;// Nombre total de images
+    const numTitles = this.titles.length; // Nombre total de titres
 
- 
+    const prevIndex = (currentIndex - 1 + numImages) % numImages;
+    const prevTitleIndex = (currentTitleIndex - 1 + numTitles) % numTitles; // Indice du titre précédent
+
+    this.url = this.images[prevIndex];
+    this.title = this.titles[prevTitleIndex]; // Utilise le titre précédent
+    this.updateMediaContent();
+  }
+
+  // Function to display the next image in the lightbox
+  next() {
+    const currentIndex = this.images.indexOf(this.url);// Trouver l'indice du url actuel
+    const currentTitleIndex = this.titles.indexOf(this.title); // Trouver l'indice du titre actuel
+
+    const numImages = this.images.length;// Nombre total de images
+    const numTitles = this.titles.length; // Nombre total de titres
+
+    const nextIndex = (currentIndex + 1) % numImages;
+    const nextTitleIndex = (currentTitleIndex + 1) % numTitles; // Indice du titre suivant
+
+    this.url = this.images[nextIndex];
+    this.title = this.titles[nextTitleIndex]; // Utilise le titre suivant
+    this.updateMediaContent();
+  }
+
+  // Function de update le media dans lightbox
+  updateMediaContent() {
+    const mediaLightbox = this.url.endsWith(".mp4")
+      ? `<video class="video" src=${this.url} type="video/mp4"></video>`
+      : `<img src="${this.url}" alt="${this.titles}">`;
+
+    const mediaTitle = `<p class="media-title">${this.title}</p>`;
+
+    const lightboxContainer = this.element.querySelector(".lightbox-container");
+    lightboxContainer.innerHTML = mediaLightbox + mediaTitle;
+  }
+
   buildImageContent(url, title) {
     const mediaLightbox = url.endsWith(".mp4")
       ? `<video class="video" src=${url} type="video/mp4"></video>`
       : `<img src="${url}" alt="${title}">`;
 
-    return `
-    ${mediaLightbox}
-    <p class="media-title">${title}</p>
-  `;
+     
   }
 
   buildDom(url, title) {
@@ -92,8 +126,8 @@ console.log("boucle 2 ",a);
       <button class="right"><i class="fa-solid fa-chevron-right"></i></button>
       <button class="left"><i class="fa-solid fa-chevron-left"></i></button>
       <div class="lightbox-container">
-        ${mediaLightbox}
-        <p class="media-title">${title}</p>
+    ${mediaLightbox}    
+    <p class="media-title">${title}</p>
       </div>
     </div>
   `;
@@ -101,9 +135,8 @@ console.log("boucle 2 ",a);
     dom
       .querySelector(".close")
       .addEventListener("click", this.close.bind(this));
-    // dom.querySelector(".right").addEventListener("click", this.next.bind(this));
-    // dom.querySelector(".left").addEventListener("click", this.prev.bind(this));
+    dom.querySelector(".right").addEventListener("click", this.next.bind(this));
+    dom.querySelector(".left").addEventListener("click", this.prev.bind(this));
     return dom;
   }
-
 }

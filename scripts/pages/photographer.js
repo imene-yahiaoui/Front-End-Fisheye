@@ -3,8 +3,6 @@ var idUrl = window.location.search.substring(4);
 
 //cree les médias
 function ProfileMedia(media, data) {
-
-
   const { id, image, title, photographerId, video, likes } = media;
   const { price } = data;
   const photo = `../../assets/images/photos/${photographerId}/${image}
@@ -46,7 +44,6 @@ function ProfileMedia(media, data) {
     totalLikes += likes;
   });
 
-
   //cree tarif box
   const tarifBox = `
    <div class="tarif-box">
@@ -59,11 +56,8 @@ function ProfileMedia(media, data) {
     
   `;
   document.getElementById("media").insertAdjacentHTML("beforeend", tarifBox);
-
-
-
- 
 }
-window.onload = function() {
+//appeler Lightbox.init(), après le chargement du contenu de la page
+window.onload = function () {
   Lightbox.init();
 };
