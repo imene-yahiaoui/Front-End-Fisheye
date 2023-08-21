@@ -40,7 +40,7 @@
   align-items: center; /* Centre verticalement */
   justify-content: center; /* Centre horizontalement */
   margin-top: 4%;
- }
+}
 
 .modal header {
   justify-content: space-between;
@@ -222,7 +222,6 @@ form input {
   opacity: 0;
 }
 
-
 .tarif-box {
   width: 376px;
   height: 89px;
@@ -245,4 +244,79 @@ form input {
 }
 .black {
   color: black;
+}
+.filtre-box {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 20px;
+  margin: 0 100px;
+}
+
+.select_box,
+.filtre-box label {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.custom-select {
+  width: 150px;
+  border-radius: 5px;
+  background-color: #901c1c;
+  font-size: 18px;
+  color: #ffffff;
+  border: none;
+  padding: 20px;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+}
+.select-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.value {
+  font-size: 18px;
+  font-weight: 700;
+}
+.data-select {
+  width: 150px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #901c1c;
+  font-size: 18px;
+  color: #ffffff;
+  border: none;
+  padding: 20px;
+}
+
+.custom-select-option {
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-bottom: 1px #ffff solid;
+  background-color: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  width: 100%;
+}
+.custom-select-option:nth-last-child(1) {
+  border: none;
+}
+.open {
+  opacity: 1;
+  position: relative;
+  left: -211px;
+  top: 31px;
+  z-index: 20;
+}
+.data_btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
 }

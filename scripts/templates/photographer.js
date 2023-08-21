@@ -27,8 +27,7 @@ P2.textContent = `${price}€/jour`;
 article.appendChild(a);
 a.appendChild(img);
 a.appendChild(h2);
-        // article.appendChild(img);
-        // article.appendChild(h2);
+       
         article.appendChild(span);
         article.appendChild(span1);
         article.appendChild(P1);

@@ -16,7 +16,7 @@ const getProfile = async () => {
           (profil) => profil.photographerId === Number(idUrl)
         );
   
-        console.log(media);
+      
   
         return {
           photographers: photographers,
@@ -65,7 +65,7 @@ const getProfile = async () => {
       .getElementById("main_contact")
       .insertAdjacentHTML("beforeend", photographerImg);
   }
-  //Crée un conteneur div pour regrouper l'ensemble des médias
+  //Crée un continer div pour regrouper l'ensemble des médias
   const div = `
   <div id="media" > </div>
   `;

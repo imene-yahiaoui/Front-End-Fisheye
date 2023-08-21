@@ -62,7 +62,6 @@ class Lightbox {
     lightboxes.forEach((lightbox) => {
       lightbox.classList.add("fadeOut");
     });
-
     window.setTimeout(() => {
       lightboxes.forEach((lightbox) => {
         if (lightbox.parentElement) {
@@ -88,7 +87,6 @@ class Lightbox {
     this.title = this.titles[prevTitleIndex]; // Utilise le titre précédent
     this.updateMediaContent();
   }
-
   // function  next
   next() {
     const currentIndex = this.images.indexOf(this.url); // Trouver l'indice du url actuel
@@ -101,7 +99,6 @@ class Lightbox {
     this.title = this.titles[nextTitleIndex]; // Utilise le titre suivant
     this.updateMediaContent();
   }
-
   // Function de update le media dans lightbox
   updateMediaContent() {
     const mediaLightbox = this.url.endsWith(".mp4")
@@ -117,8 +114,7 @@ class Lightbox {
   buildImageContent(url, title) {
     const mediaLightbox = url.endsWith(".mp4")
       ? ` 
-      <video class="video" controls> <source src="${url}" type="video/mp4"> </video>
-    
+      <video class="video" controls> <source src="${url}" type="video/mp4"> </video> 
     `
       : `<img src="${url}" alt="${title}">`;
   }
@@ -126,7 +122,6 @@ class Lightbox {
   buildDom(url, title) {
     const dom = document.createElement("div");
     dom.classList.add("lightbox");
-
     // la condition si une img ou video
     const mediaLightbox = url.endsWith(".mp4")
       ? `<video class="video" controls>
@@ -134,7 +129,6 @@ class Lightbox {
        .
     </video>`
       : `<img src="${url}" alt="${title}">`;
-
     dom.innerHTML = `
     <div class="lightbox-div">
       <button class="close fa-x"></button>
@@ -146,7 +140,6 @@ class Lightbox {
       </div>
     </div>
   `;
-
     dom
       .querySelector(".close")
       .addEventListener("click", this.close.bind(this));
