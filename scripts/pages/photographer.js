@@ -24,7 +24,7 @@ function ProfileMedia(media, data) {
        <figcaption class="media-title">${title}</figcaption>
         <div class="like">
          <p > ${likes} </p>
-         <i class="fa-solid fa-heart" aria-label="likes"></i>
+         <button class='hearts'><i class="fa-solid fa-heart" aria-label="likes"></i></button>
         </div>
      </div>
    
@@ -34,6 +34,21 @@ function ProfileMedia(media, data) {
   document
     .getElementById("media")
     .insertAdjacentHTML("beforeend", mediaPhotographe);
+  //click sur e coeur
+
+  const mediaInfoElement = document.querySelectorAll(".media-info");
+
+  // Parcourir tous les éléments media-info une seule fois
+  mediaInfoElement.forEach((element) => {
+    const like = element.querySelector(".like p");
+    const currentLikes = parseInt(like.textContent);
+
+    const heartButton = element.querySelector(".hearts");
+    heartButton.addEventListener("click", () => {
+      const updatedLikes = currentLikes + 1;
+      like.textContent = updatedLikes.toString();
+    });
+  });
 
   /////////////affiche le total des likes
   const mediaInfoElements = document.querySelectorAll(".media-info");
@@ -42,13 +57,28 @@ function ProfileMedia(media, data) {
   mediaInfoElements.forEach((element) => {
     const likes = parseInt(element.querySelector(".like p").textContent);
     totalLikes += likes;
+    const heartButton = element.querySelector(".hearts");
+
+    heartButton.addEventListener("click", () => {
+      let updateTotalLikes = 0;
+      mediaInfoElements.forEach((element) => {
+        const likes = parseInt(element.querySelector(".like p").textContent);
+        updateTotalLikes += likes;
+      });
+      const updateTotal = document.querySelector(".totalLikes");
+
+      totalLikes = updateTotalLikes;
+
+      updateTotal.textContent = updateTotalLikes.toString();
+      console.log("updateTotalLikes", updateTotalLikes);
+    });
   });
 
   //cree tarif box
   const tarifBox = `
    <div class="tarif-box">
     <div class="like-box">
-    <p>${totalLikes}</p>
+    <p class='totalLikes'>${totalLikes}</p>
     <i class="fa-solid fa-heart black"></i>
   </div>
     <p> ${price}€  / jour </p>

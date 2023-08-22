@@ -1,3 +1,6 @@
+var idUrl = window.location.search.substring(4);
+
+
 const getProfile = async () => {
   try {
     const requete = await fetch("./data/photographers.json", {
