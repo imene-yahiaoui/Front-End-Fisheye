@@ -26,29 +26,21 @@ selectContainer.addEventListener("click", () => {
 });
 
 const buttonSelect = document.querySelectorAll(".custom-select-option");
-buttonSelect.forEach((button) => {
-  button.addEventListener("click", () => {
-    const selectedValue = button.getAttribute("data-value");
-    label.textContent = selectedValue; //metre le text de value
-    select.classList.remove("open");
-  });
-});
 //les function de filtre
 //par like
 function sortByLikes(mediaArray) {
   return mediaArray.slice().sort((a, b) => b.likes - a.likes);
 }
-
+//par date la plus recente
 function sortByDate(mediaArray) {
   return mediaArray.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 }
-
+//par order alphabetique
 function sortByTitle(mediaArray) {
   return mediaArray.slice().sort((a, b) => a.title.localeCompare(b.title));
 }
 
-//btn
-
+// écoute a les btn de filtre
 buttonSelect.forEach((button) => {
   button.addEventListener("click", () => {
     const selectedValue = button.getAttribute("data-value");
@@ -58,7 +50,7 @@ buttonSelect.forEach((button) => {
     // Mettez à jour  le div des media
     currentSortCriteria = selectedValue;
     document.getElementById("media").innerHTML = ""; // Efface les médias actuels
-   
+
     processData();
   });
 });

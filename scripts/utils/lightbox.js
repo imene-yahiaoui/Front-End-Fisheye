@@ -12,8 +12,6 @@ class Lightbox {
     const titles = getAllTitles.map((getAllTitle) =>
       getAllTitle.getAttribute("data-title")
     );
-
-    console.log(titles);
     links.forEach((link) =>
       link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -103,7 +101,7 @@ class Lightbox {
   updateMediaContent() {
     const mediaLightbox = this.url.endsWith(".mp4")
       ? `<video class="video" controls>
-      <source src="${url}" type="video/mp4"> </video>`
+      <source src="${this.url}" type="video/mp4"> </video>`
       : `<img src="${this.url}" alt="${this.titles}">`;
 
     const mediaTitle = `<p class="media-title">${this.title}</p>`;
@@ -125,9 +123,7 @@ class Lightbox {
     // la condition si une img ou video
     const mediaLightbox = url.endsWith(".mp4")
       ? `<video class="video" controls>
-      <source src="${url}" type="video/mp4">
-       .
-    </video>`
+      <source src="${url}" type="video/mp4"></video>`
       : `<img src="${url}" alt="${title}">`;
     dom.innerHTML = `
     <div class="lightbox-div">
