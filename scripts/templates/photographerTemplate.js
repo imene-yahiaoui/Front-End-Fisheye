@@ -34,8 +34,20 @@ const getProfile = async () => {
     if (profileData) {
       const photographer = profileData.photographers[0];
       profile(photographer);
-      profileData.media.forEach((media) => ProfileMedia(media, photographer)); // Appeler ProfileMedia pour chaque média, et aussi photographer pour reciprer price
+
+      let filtreMedia = "Popularité"; // Valeur par défaut
+     // filtrer les media
+    let sortedMedia = profileData.media;
+    if (filtreMedia === "Popularité") {
+      sortedMedia = sortByLikes(sortedMedia);
+    } else if (filtreMedia === "Date") {
+      sortedMedia = sortByDate(sortedMedia);
+    } else if (filtreMedia === "Titre") {
+      sortedMedia = sortByTitle(sortedMedia);
     }
+
+    sortedMedia.forEach((media) => ProfileMedia(media, photographer));
+  }
   };
   
   processData();
