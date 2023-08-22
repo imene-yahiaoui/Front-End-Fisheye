@@ -34,21 +34,20 @@ buttonSelect.forEach((button) => {
   });
 });
 //les function de filtre
-//par like 
+//par like
 function sortByLikes(mediaArray) {
   return mediaArray.slice().sort((a, b) => b.likes - a.likes);
 }
-//par date
+
 function sortByDate(mediaArray) {
   return mediaArray.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 }
-//par order alphabetique
+
 function sortByTitle(mediaArray) {
   return mediaArray.slice().sort((a, b) => a.title.localeCompare(b.title));
 }
 
-
-//btn 
+//btn
 
 buttonSelect.forEach((button) => {
   button.addEventListener("click", () => {
@@ -59,6 +58,7 @@ buttonSelect.forEach((button) => {
     // Mettez à jour  le div des media
     currentSortCriteria = selectedValue;
     document.getElementById("media").innerHTML = ""; // Efface les médias actuels
+   
     processData();
   });
 });
