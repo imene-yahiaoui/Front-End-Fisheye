@@ -57,7 +57,7 @@ function ProfileMedia(media, data) {
     const likes = parseInt(element.querySelector(".like p").textContent);
     totalLikes += likes;
     console.log(totalLikes);
-    a = totalLikes;
+    TotalLikes = totalLikes;
 
     const heartButton = element.querySelector(".hearts");
     //quand on click sur like
@@ -82,7 +82,7 @@ function ProfileMedia(media, data) {
   const tarifBox = `
    <div class="tarif-box">
      <div class="like-box">
-      <p class='totalLikes'> ${a}</p>
+      <p class='totalLikes'> ${TotalLikes}</p>
       <i class="fa-solid fa-heart black"></i>
      </div>
        <p> ${price}€  / jour </p>
