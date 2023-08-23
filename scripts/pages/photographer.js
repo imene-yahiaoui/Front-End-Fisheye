@@ -53,36 +53,40 @@ function ProfileMedia(media, data) {
   /////////////affiche le total des likes
   const mediaInfoElements = document.querySelectorAll(".media-info");
   let totalLikes = 0;
-
   mediaInfoElements.forEach((element) => {
     const likes = parseInt(element.querySelector(".like p").textContent);
     totalLikes += likes;
+    console.log(totalLikes);
+    a = totalLikes;
+
     const heartButton = element.querySelector(".hearts");
-
+    //quand on click sur like
     heartButton.addEventListener("click", () => {
-      let updateTotalLikes = 0;
-      mediaInfoElements.forEach((element) => {
-        const likes = parseInt(element.querySelector(".like p").textContent);
-        updateTotalLikes += likes;
+      //update total Likes
+      const tarifBox = document.querySelectorAll(".tarif-box");
+      tarifBox.forEach((element) => {
+        const Total = element.querySelector(".totalLikes");
+        const currentTotal = parseInt(Total.textContent);
+        let updateTotalLikes = 0;
+        mediaInfoElements.forEach((element) => {
+          const likes = parseInt(element.querySelector(".like p").textContent);
+          updateTotalLikes += likes;
+          //affiche update totla likes
+          Total.textContent = updateTotalLikes.toString();
+        });
       });
-      const updateTotal = document.querySelector(".totalLikes");
-
-      totalLikes = updateTotalLikes;
-
-      updateTotal.textContent = updateTotalLikes.toString();
-      console.log("updateTotalLikes", updateTotalLikes);
     });
   });
 
   //cree tarif box
   const tarifBox = `
    <div class="tarif-box">
-    <div class="like-box">
-    <p class='totalLikes'>${totalLikes}</p>
-    <i class="fa-solid fa-heart black"></i>
-  </div>
-    <p> ${price}€  / jour </p>
-    </div>
+     <div class="like-box">
+      <p class='totalLikes'> ${a}</p>
+      <i class="fa-solid fa-heart black"></i>
+     </div>
+       <p> ${price}€  / jour </p>
+   </div>
     
   `;
   document.getElementById("media").insertAdjacentHTML("beforeend", tarifBox);
