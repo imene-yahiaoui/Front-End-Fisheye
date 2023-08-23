@@ -340,3 +340,61 @@ form textarea {
   color: #ffffff;
   cursor: pointer;
 }
+
+.formData[data-error]::after {
+  content: attr(data-error);
+  font-size: 0.8rem;
+  color: #e54858;
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  text-align: left;
+  line-height: 0.3;
+  opacity: 0;
+  transition: 0.3s;
+}
+.formData[data-error-visible="true"]::after {
+  opacity: 1;
+}
+.formData[data-error-visible="true"] .text-control {
+  border: 2px solid #e54858;
+}
+.modal-confermation {
+  position: absolute;
+  background-color: #b5b1b1af;
+  z-index: 50;
+  top: 105px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  left: 30%;
+  box-shadow:4px 4px 6px 0 rgba(23, 22, 22, 0.36)
+}
+.modal_title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 30px;
+  column-gap: 541px;
+}
+
+.modal-confermation p {
+  font-size: 30px;
+  color: black;
+}
+.modal-confermation button {
+  margin: 0 auto;
+}
+
+.continer_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.318);
+  z-index: 40;
+  overflow: auto;
+  transition: opacity.3s;
+}

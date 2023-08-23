@@ -36,12 +36,12 @@
         
         <img src="assets/icons/close.svg" alt="icon" id="closeModal" />
       </header>
-      <form id="form" class="form">
-        <div class="first">
-          <label>Prénom</label>
-          <input placeholder="entrer votre Prénom " type="text" required />
+      <form id="form" class="form" name="contact" method="get" action="photographer.html" >
+        <div class="formData first">
+          <label for="firstName">Prénom</label>
+          <input id="first" placeholder="entrer votre Prénom " type="text" minlength="2"name="firstName"  required />
         </div>
-        <button type="submit" class="contact_button">Envoyer</button>
+        <button  id="btn-submit" type="submit" class="contact_button">Envoyer</button>
       </form>
     </div>
   </div>
