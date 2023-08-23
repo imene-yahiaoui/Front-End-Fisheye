@@ -1,27 +1,36 @@
-
-
-
 //ouvre   modal contact
 function displayModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
 }
-document.getElementById('openModal') .addEventListener('click',displayModal)
+document.getElementById("openModal").addEventListener("click", displayModal);
 
-//ferme   modal contact 
+//ferme  modal contact
 function closeModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
 }
-document.getElementById('closeModal') .addEventListener('click',closeModal)
 
+document.getElementById("closeModal").addEventListener("click", closeModal);
+//ferme  modal contact avec clavier
+document.addEventListener("keyup", (e) => {
+  if (e.key === "Escape" || e.key === "Esc") {
+    closeModal();
+  }
+});
+function getName(data) {
+  const {name}= data;
+  const modalContact = document.querySelector(".modal-contact");
+    const nom = `<h2 > ${name}</h2>`;
+  modalContact.insertAdjacentHTML("beforeend", nom);
+}
 
-//cree les element de modal contact 
+//cree les element de modal contact
 
-const form = document.getElementById('form')
-const first = document.querySelector('.first')
- 
-const contactInfo=`
+const form = document.getElementById("form");
+const first = document.querySelector(".first");
+
+const contactInfo = `
 
 <div>
 <label>Nom</label>
@@ -37,7 +46,6 @@ required/>
 <textarea placeholder="entrer votre message"  type="text" rows="20"  required></textarea>
 </div>
 
-`
+`;
 
 first.insertAdjacentHTML("afterend", contactInfo);
- 

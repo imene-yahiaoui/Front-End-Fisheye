@@ -56,8 +56,7 @@ function ProfileMedia(media, data) {
   mediaInfoElements.forEach((element) => {
     const likes = parseInt(element.querySelector(".like p").textContent);
     totalLikes += likes;
-    console.log(totalLikes);
-    TotalLikes = totalLikes;
+      TotalLikes = totalLikes;
 
     const heartButton = element.querySelector(".hearts");
     //quand on click sur like

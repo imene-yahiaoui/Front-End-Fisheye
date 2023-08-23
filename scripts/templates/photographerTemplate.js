@@ -57,6 +57,7 @@ const info = async () => {
   if (profileData) {
     const photographer = profileData.photographers[0];
     profile(photographer);
+    getName(photographer);
   }
 };
 info();
