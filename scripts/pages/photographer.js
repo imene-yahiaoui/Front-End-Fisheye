@@ -5,18 +5,8 @@ var idUrl = window.location.search.substring(4);
 function ProfileMedia(media, data) {
   const { id, image, title, photographerId, video, likes } = media;
   const { price } = data;
-  const photo = `../../assets/images/photos/${photographerId}/${image}
-  `;
-  const videoMedia = `../../assets/images/photos/${photographerId}/${video}`;
 
-  let thisMedia =
-    video === undefined
-      ? `<a href=${photo} class="img-media" data-title="${title}">
-    <img class="mediaImg" src=${photo} alt="${title}">
-  </a>`
-      : `<a href=${videoMedia} class="img-media" data-title="${title}">
-  <video class="video" src=${videoMedia} type="video/mp4"></video></a>`;
-
+const thisMedia = mediaFactory(media)
   const mediaPhotographe = `
    <figure class="media-info">
   ${thisMedia}

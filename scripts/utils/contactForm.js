@@ -181,19 +181,15 @@ function handleFormSubmit(e) {
     const modalconferm = `
     <div class="continer_modal">
     <div class="modal-confermation ">
-      <div class="modal_title">
-       <p>confermation </p>
-       <img src="../../assets/icons/close.svg" alt="icon" id="closeModal" />
-      </div>
-      <p> ${prenom.value} Merci pour votre message </p>
+        <p> ${prenom.value} Merci pour votre soumission ! Votre formulaire a été reçu avec succès. Nous traiterons votre demande dans les plus brefs délais </p>
       <button id ="submitModal" type="submit"class="contact_button"> ok </button>
     </div>
     </div>`;
     document
       .getElementById("main")
       .insertAdjacentHTML("beforeend", modalconferm);
-    // Rediriger vers la page index.html pour les 2 btn
-    document.getElementById("closeModal").addEventListener("click", gotoindex);
+    // Rediriger vers la page index.html 
+ 
     document.getElementById("submitModal").addEventListener("click", gotoindex);
   }
   function gotoindex() {
