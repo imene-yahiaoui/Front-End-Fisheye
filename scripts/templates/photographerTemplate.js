@@ -1,6 +1,5 @@
 var idUrl = window.location.search.substring(4);
 
-
 const getProfile = async () => {
   try {
     const requete = await fetch("./data/photographers.json", {
@@ -82,7 +81,7 @@ function profile(data) {
 
   const photographerImg = `
     <div id="imagePhotographer">
-      <img  class="photographerImg" src=${picture} alt=${name}></div>
+      <img  class="photographerImg" src=${picture} alt="photographer picture"></div>
     `;
   document
     .getElementById("main_contact")

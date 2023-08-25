@@ -185,26 +185,23 @@ function handleFormSubmit(e) {
        <p>confermation </p>
        <img src="../../assets/icons/close.svg" alt="icon" id="closeModal" />
       </div>
-      <p>Merci pour </p>
+      <p> ${prenom.value} Merci pour votre message </p>
       <button id ="submitModal" type="submit"class="contact_button"> ok </button>
     </div>
     </div>`;
     document
-    .getElementById("main")
-    .insertAdjacentHTML("beforeend", modalconferm);
-  document.getElementById("closeModal").addEventListener("click", gotoindex);
-  document.getElementById("submitModal").addEventListener("click", gotoindex);
-
+      .getElementById("main")
+      .insertAdjacentHTML("beforeend", modalconferm);
+    // Rediriger vers la page index.html pour les 2 btn
+    document.getElementById("closeModal").addEventListener("click", gotoindex);
+    document.getElementById("submitModal").addEventListener("click", gotoindex);
   }
-  function gotoindex(){
+  function gotoindex() {
     window.location.href = "../../index.html";
   }
   ////////// Appeler la fonction validate() si elle retourne true
   if (validate()) {
-    // Rediriger vers la page index.html
     modalConfirmation();
-  
-    // window.location.href = "../../index.html";
 
     console.log(
       `prenom:${prenom.value}  nom: ${nom.value}  email: ${email.value}  message: ${message.value}`
