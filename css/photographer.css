@@ -359,17 +359,18 @@ form textarea {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-.modal-confermation {
-  position: absolute;
-  background-color: #b5b1b1af;
-  z-index: 50;
-  top: 105px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px 20px;
-  left: 30%;
-  box-shadow:4px 4px 6px 0 rgba(23, 22, 22, 0.36)
+.modal-confirmation {
+  border: 1px #0f0e0e solid;
+    position: absolute;
+    background-color: #b5b1b1af;
+    z-index: 50;
+    top: 105px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    left: 30%;
+    box-shadow: 4px 4px 6px 0 rgb(18 17 17 / 71%);
 }
 .modal_title {
   display: flex;

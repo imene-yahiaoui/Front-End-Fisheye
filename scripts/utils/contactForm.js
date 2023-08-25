@@ -12,18 +12,24 @@ function closeModal() {
 }
 
 document.getElementById("closeModal").addEventListener("click", closeModal);
-//ferme  modal contact avec clavier
-document.addEventListener("keyup", (e) => {
-  if (e.key === "Escape" || e.key === "Esc") {
-    closeModal();
-  }
-});
+
 function getName(data) {
   const { name } = data;
   const modalContact = document.querySelector(".modal-contact");
   const nom = `<h2 > ${name}</h2>`;
   modalContact.insertAdjacentHTML("beforeend", nom);
 }
+
+/**
+ *  avec clavier
+ */
+
+//ferme  modal contact avec clavier
+document.addEventListener("keyup", (e) => {
+  if (e.key === "Escape" || e.key === "Esc") {
+    closeModal();
+  }
+});
 
 //cree les element de modal contact
 const form = document.forms["contact"];
@@ -174,27 +180,34 @@ function validate() {
 
 ////////// Fonction pour gérer  le bouton de soumission "cest parti"
 function handleFormSubmit(e) {
-  e.preventDefault(); // Empêche la soumission du formulaire
-  //modal confermation
-
+  e.preventDefault();
   function modalConfirmation() {
-    const modalconferm = `
-    <div class="continer_modal">
-    <div class="modal-confermation ">
-        <p> ${prenom.value} Merci pour votre soumission ! Votre formulaire a été reçu avec succès. Nous traiterons votre demande dans les plus brefs délais </p>
+    document.removeEventListener("keyup", handleFormSubmit);
+    const modalconfirm = `
+    <div  id= "modalConfirmation" class="continer_modal">
+    <div class="modal-confirmation ">
+        <p> ${prenom.value} Merci pour votre soumission ! </p>
+        <p>Votre formulaire a été reçu avec succès. Nous traiterons votre demande dans les plus brefs délais </p>
       <button id ="submitModal" type="submit"class="contact_button"> ok </button>
     </div>
     </div>`;
     document
       .getElementById("main")
-      .insertAdjacentHTML("beforeend", modalconferm);
-    // Rediriger vers la page index.html 
- 
-    document.getElementById("submitModal").addEventListener("click", gotoindex);
+      .insertAdjacentHTML("beforeend", modalconfirm);
+    // Rediriger vers la page index.html
+    document
+      .getElementById("submitModal")
+      /**
+       * clavier
+       */
+      .addEventListener("click", gotoindex);
+    document.addEventListener("keyup", (e) => {
+      if (e.key === "Enter") {
+        gotoindex();
+      }
+    });
   }
-  function gotoindex() {
-    window.location.href = "../../index.html";
-  }
+
   ////////// Appeler la fonction validate() si elle retourne true
   if (validate()) {
     modalConfirmation();
@@ -209,3 +222,17 @@ function handleFormSubmit(e) {
 document
   .getElementById("btn-submit")
   .addEventListener("click", handleFormSubmit);
+
+/**
+ * clavier
+ */
+
+document.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    handleFormSubmit(e);
+  }
+});
+
+function gotoindex() {
+  window.location.href = "../../index.html";
+}
