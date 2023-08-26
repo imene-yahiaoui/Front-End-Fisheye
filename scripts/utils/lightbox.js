@@ -103,28 +103,20 @@ class Lightbox {
       ? `<video class="video" controls>
       <source src="${this.url}" type="video/mp4"> </video>`
       : `<img src="${this.url}" alt="${this.titles}">`;
-
     const mediaTitle = `<p class="media-title">${this.title}</p>`;
     const lightboxContainer = this.element.querySelector(".lightbox-container");
     lightboxContainer.innerHTML = mediaLightbox + mediaTitle;
   }
 
   buildImageContent(url, title) {
-    const mediaLightbox = url.endsWith(".mp4")
-      ? ` 
-      <video class="video" controls> <source src="${url}" type="video/mp4"> </video> 
-    `
-      : `<img src="${url}" alt="${title}">`;
+    const mediaLightbox = LightBoxFactory(url, title);
   }
 
   buildDom(url, title) {
     const dom = document.createElement("div");
     dom.classList.add("lightbox");
-    // la condition si une img ou video
-    const mediaLightbox = url.endsWith(".mp4")
-      ? `<video class="video" controls>
-      <source src="${url}" type="video/mp4"></video>`
-      : `<img src="${url}" alt="${title}">`;
+
+    const mediaLightbox = LightBoxFactory(url, title);
     dom.innerHTML = `
     <div class="lightbox-div">
       <button class="close fa-x"></button>

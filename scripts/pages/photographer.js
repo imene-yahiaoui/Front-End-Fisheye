@@ -71,8 +71,8 @@ const thisMedia = mediaFactory(media)
   const tarifBox = `
    <div class="tarif-box">
      <div class="like-box">
-      <p class='totalLikes'> ${TotalLikes}</p>
-      <i class="fa-solid fa-heart black"></i>
+       <p class='totalLikes'> ${TotalLikes}</p>
+       <i class="fa-solid fa-heart black"></i>
      </div>
        <p> ${price}€  / jour </p>
    </div>
