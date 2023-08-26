@@ -207,6 +207,7 @@ form textarea {
   width: 100%;
   height: 100%;
   border-radius: 5px;
+  object-fit: contain;
 }
 .lightbox-container p {
   margin-bottom: 10px;
@@ -361,16 +362,16 @@ form textarea {
 }
 .modal-confirmation {
   border: 1px #0f0e0e solid;
-    position: absolute;
-    background-color: #b5b1b1af;
-    z-index: 50;
-    top: 105px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 20px;
-    left: 30%;
-    box-shadow: 4px 4px 6px 0 rgb(18 17 17 / 71%);
+  position: absolute;
+  background-color: #b5b1b1af;
+  z-index: 50;
+  top: 105px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  left: 30%;
+  box-shadow: 4px 4px 6px 0 rgb(18 17 17 / 71%);
 }
 .modal_title {
   display: flex;
