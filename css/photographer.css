@@ -110,7 +110,7 @@ form textarea {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 40px;
+  padding: 50px 40px;
 }
 #cader p {
   color: #901c1c;
@@ -118,13 +118,15 @@ form textarea {
   font-weight: bold;
   line-height: 16.93px;
 }
+.cader-name {
+  margin: 0;
+}
 #media {
   padding: 0px 40px;
   margin: 0 27px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   row-gap: 29px;
-  /* column-gap: 30px; */
 }
 
 .media-info {

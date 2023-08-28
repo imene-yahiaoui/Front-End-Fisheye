@@ -39,16 +39,16 @@ const contactInfo = `
 
 <div  class="formData last">
 <label for="lastName">Nom</label>
-<input id="last" placeholder="entrer votre nom "   type="text" name="lastName" minlength="2" required/>
+<input  aria-label="last name" id="last" placeholder="entrer votre nom "   type="text" name="lastName" minlength="2" required/>
 </div>
 <div class="formData email">
 <label for="email">Email</label>
-<input id="email" placeholder="entrer votre email"  type="email" name="email"
+<input  aria-label="email" id="email" placeholder="entrer votre email"  type="email" name="email"
 required/>
 </div>
 <div class="formData message">
 <label for="message" >Votre message</label>
-<textarea id="message" placeholder="entrer votre message"  type="text" rows="20" name="message"  required></textarea>
+<textarea  aria-label="message" id="message" placeholder="entrer votre message"  type="text" rows="20" name="message"  required></textarea>
 </div>
 
 `;
@@ -188,7 +188,7 @@ function handleFormSubmit(e) {
     <div class="modal-confirmation ">
         <p> ${prenom.value} Merci pour votre soumission ! </p>
         <p>Votre formulaire a été reçu avec succès. Nous traiterons votre demande dans les plus brefs délais </p>
-      <button id ="submitModal" type="submit"class="contact_button"> ok </button>
+      <button id ="submitModal" type="submit"class="contact_button" aria-label="submit modal "> ok </button>
     </div>
     </div>`;
     document

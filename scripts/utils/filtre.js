@@ -3,12 +3,12 @@ const filtre = `
   <label for="filter">Trier par :</label>
   <label for="data-select" class="data-select select-icon"> 
     <p class="value">Popularité</p>
-    <button class="data_btn"><i class="fa-solid fa-angle-down"></i></button>
+    <button class="data_btn" aria-label="btn de filtre" ><i class="fa-solid fa-angle-down"></i></button>
   </label>
   <div class="custom-select">
-    <button class="custom-select-option select-icon" data-value="Popularité">Popularité <i class="fa-solid fa-chevron-up"></i></button>
-    <button class="custom-select-option" data-value="Date">Date</button>
-    <button class="custom-select-option" data-value="Titre">Titre</button>
+    <button class="custom-select-option select-icon" data-value="Popularité" aria-label="btn de filtre Popularité">Popularité <i class="fa-solid fa-chevron-up"></i></button>
+    <button class="custom-select-option" data-value="Date" aria-label="btn de filtre Date">Date</button>
+    <button class="custom-select-option" data-value="Titre" aria-label="btn de filtre Titre">Titre</button>
   </div>
 </section>
 `;

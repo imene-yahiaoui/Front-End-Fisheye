@@ -18,7 +18,7 @@ function ProfileMedia(media, data) {
        <figcaption class="media-title">${title}</figcaption>
         <div class="like">
          <p > ${likes} </p>
-         <button class='hearts'><i class="fa-solid fa-heart" aria-label="likes"></i></button>
+         <button class='hearts' aria-label="likes" ><i class="fa-solid fa-heart"  ></i></button>
         </div>
      </div>
    

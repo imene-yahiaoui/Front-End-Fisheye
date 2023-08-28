@@ -74,20 +74,15 @@ const info = async () => {
 };
 info();
 
-//function pour créer les éléments HTML
-function profile(data) {
-  // Vérifier si l'id existe dans l'URL
-  // if (!data) {
-  //   window.location.href = "../../index.html";
 
-  //   return null;
-  // }
+function profile(data) {
+
   const { name, portrait, city, country, tagline, price } = data;
   const picture = `assets/photographers/${portrait}`;
 
   const photographerInfo = `
       <div id="cader">
-        <h2>${name}</h2>
+        <h2 class="cader-name">${name}</h2>
         <p>${city}, ${country}</p>
         <p>${tagline}</p>
         
