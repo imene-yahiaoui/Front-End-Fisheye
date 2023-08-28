@@ -8,7 +8,20 @@ const getProfile = async () => {
 
     if (requete.ok) {
       const data = await requete.json();
+      /**
+       * protéger la route
+       * Vérifier si l'id correspond à un photographe existant
+       */
 
+      const photographerExists = data.photographers.some(
+        (profil) => profil.id === Number(idUrl)
+      );
+
+      if (!photographerExists) {
+        console.log("Aucun photographe ne correspond à cet ID");
+        window.location.href = "index.html";
+        return null;
+      }
       // Filtrer les photographes et médias en fonction de l'id
       const photographers = data.photographers.filter(
         (profil) => profil.id === Number(idUrl)
@@ -63,6 +76,12 @@ info();
 
 //function pour créer les éléments HTML
 function profile(data) {
+  // Vérifier si l'id existe dans l'URL
+  // if (!data) {
+  //   window.location.href = "../../index.html";
+
+  //   return null;
+  // }
   const { name, portrait, city, country, tagline, price } = data;
   const picture = `assets/photographers/${portrait}`;
 
