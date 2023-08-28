@@ -1,12 +1,16 @@
-// Récupérer l'id depuis l'URL
-var idUrl = window.location.search.substring(4);
+/**
+ * Récupérer le id
+ *  */
+
+var urlParams = new URLSearchParams(window.location.search);
+var idUrl = urlParams.get("id");
 
 //cree les médias
 function ProfileMedia(media, data) {
   const { id, image, title, photographerId, video, likes } = media;
   const { price } = data;
 
-const thisMedia = mediaFactory(media)
+  const thisMedia = mediaFactory(media);
   const mediaPhotographe = `
    <figure class="media-info">
   ${thisMedia}
@@ -46,7 +50,7 @@ const thisMedia = mediaFactory(media)
   mediaInfoElements.forEach((element) => {
     const likes = parseInt(element.querySelector(".like p").textContent);
     totalLikes += likes;
-      TotalLikes = totalLikes;
+    TotalLikes = totalLikes;
 
     const heartButton = element.querySelector(".hearts");
     //quand on click sur like

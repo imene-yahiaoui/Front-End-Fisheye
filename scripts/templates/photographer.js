@@ -1,38 +1,23 @@
 function photographerTemplate(data) {
-    const { name, portrait , id, city,country,tagline, price } = data;
+  const { name, portrait, id, city, country, tagline, price } = data;
 
-    const picture = `assets/photographers/${portrait}`;
+  const picture = `assets/photographers/${portrait}`;
 
-    function getUserCardDOM() {
-        const article = document.createElement( 'article' );
-        const a=  document.createElement( 'a' );
-        //ajout le lien ver la page photographer
-        a.setAttribute("href",`photographer.html?id=${id}`);
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture);
-        img.setAttribute("alt", `photographer picture ${name}`);
-     
-        const h2 = document.createElement( 'h2' );
-        h2.textContent = name;
-const span= document.createElement( 'span' );
-span.textContent = `${city}, `;
-const span1= document.createElement( 'span' );
-span1.textContent = country;
-const  P1= document.createElement( 'p' );
-P1.textContent = tagline;
-const  P2= document.createElement( 'p' );
-P2.textContent = `${price}€/jour`;
+  function getUserCardDOM() {
+    const article = document.createElement("article");
+    article.innerHTML = `
+      <a href="photographer.html?id=${id}">
+        <img src="${picture}" alt="photographer picture ${name}">
+        <h2>${name}</h2>
+      </a>
+      <span>${city}, </span>
+      <span>${country}</span>
+      <p>${tagline}</p>
+      <p>${price}€/jour</p>
+    `;
 
+    return article;
+  }
 
-article.appendChild(a);
-a.appendChild(img);
-a.appendChild(h2);
-       
-        article.appendChild(span);
-        article.appendChild(span1);
-        article.appendChild(P1);
-        article.appendChild(P2);
-        return (article);
-    }
-    return { name, picture, getUserCardDOM }
+  return { name, picture, getUserCardDOM };
 }
