@@ -239,7 +239,7 @@ form textarea {
   background-color: transparent;
 }
 .left {
-  left: 0%;
+  left: -4%;
 }
 .lightbox.fadeOut {
   opacity: 0;
