@@ -38,16 +38,16 @@ const first = document.querySelector(".first");
 const contactInfo = `
 
 <div  class="formData last">
-<label for="lastName">Nom</label>
+<label id="lastName">Nom</label>
 <input  aria-label="last name" id="last" placeholder="entrer votre nom "   type="text" name="lastName" minlength="2" required/>
 </div>
 <div class="formData email">
-<label for="email">Email</label>
+<label id="email">Email</label>
 <input  aria-label="email" id="email" placeholder="entrer votre email"  type="email" name="email"
 required/>
 </div>
 <div class="formData message">
-<label for="message" >Votre message</label>
+<label id="message" >Votre message</label>
 <textarea  aria-label="message" id="message" placeholder="entrer votre message"  type="text" rows="20" name="message"  required></textarea>
 </div>
 
