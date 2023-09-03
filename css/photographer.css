@@ -455,13 +455,6 @@ form textarea {
     width: 100px;
     height: 29px;
   }
-  .left {
-    left: -15%;
-  }
-  .left,
-  .right {
-    top: 45%;
-  }
   #main_contact {
     display: flex;
     flex-direction: column;
@@ -481,6 +474,7 @@ form textarea {
   .left,
   .right {
     font-size: 19px;
+    top: 45%;
   }
   .left {
     left: -87px;
