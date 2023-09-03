@@ -1,3 +1,9 @@
+/**
+ * Génère le balisage HTML pour afficher une image dans la galerie de médias.
+ * @param {Object} media - Les informations sur le média (image).
+ * @returns {string} - Le balisage HTML pour l'image.
+ */
+
 function generateDomPhoto(media) {
   const { image, photographerId, title } = media;
 
@@ -6,7 +12,11 @@ function generateDomPhoto(media) {
     <img class="mediaImg" src="${photo}" alt="${title}">
   </a>`;
 }
-
+/**
+ * Génère le balisage HTML pour afficher une vidéo dans la galerie de médias.
+ * @param {Object} media - Les informations sur le média (vidéo).
+ * @returns {string} - Le balisage HTML pour la vidéo.
+ */
 function generateDomVideo(media) {
   const { video, photographerId, title } = media;
   const videoMedia = `../../assets/images/photos/${photographerId}/${video}`;
