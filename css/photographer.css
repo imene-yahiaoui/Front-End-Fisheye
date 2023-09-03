@@ -314,7 +314,7 @@ form textarea {
   font-size: 18px;
   color: #ffffff;
   border: none;
-  padding: 20px;
+  padding: 7px;
 }
 
 .custom-select-option {
@@ -333,8 +333,8 @@ form textarea {
 .open {
   opacity: 1;
   position: relative;
-  left: -211px;
-  top: 31px;
+  left: -196px;
+  top: 44px;
   z-index: 20;
 }
 .data_btn {
@@ -401,4 +401,91 @@ form textarea {
   z-index: 40;
   overflow: auto;
   transition: opacity.3s;
+}
+
+/**mediaQueries**/
+
+/* Styles spécifiques aux small pc (jusqu'à 768px de largeur d'écran) */
+
+@media (max-width: 1200px) {
+  #main_contact {
+    column-gap: 59px;
+  }
+  #media {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .left {
+    left: -10%;
+  }
+}
+
+/* Styles spécifiques aux tablettes (jusqu'à 768px de largeur d'écran) */
+
+@media (max-width: 999px) {
+  .logo {
+    margin-left: 35px;
+  }
+  #media {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .left {
+    left: -15%;
+  }
+  .left,
+  .right {
+    top: 45%;
+  }
+  #cader h2 {
+    font-size: 36px;
+  }
+  #main_contact {
+    column-gap: 25px;
+  }
+  .modal header h2 {
+    font-size: 44px;
+  }
+}
+/* Styles spécifiques aux mobile (jusqu'à 768px de largeur d'écran) */
+@media (max-width: 768px) {
+  #media {
+    padding: 0;
+    margin: 0 auto;
+  }
+  .logo {
+    width: 100px;
+    height: 29px;
+  }
+  .left {
+    left: -15%;
+  }
+  .left,
+  .right {
+    top: 45%;
+  }
+  #main_contact {
+    display: flex;
+    flex-direction: column;
+  }
+  #main_contact {
+    row-gap: 30px;
+  }
+  .cader-name {
+    font-size: 20px;
+  }
+  .modal header h2 {
+    font-size: 34px;
+  }
+  .media-info {
+    width: 300px;
+  }
+  .left,
+  .right {
+    font-size: 19px;
+  }
+  .left {
+    left: -87px;
+  }
+  .right {
+    right: -83%;
+  }
 }

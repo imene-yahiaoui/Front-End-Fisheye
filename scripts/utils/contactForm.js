@@ -38,16 +38,16 @@ const first = document.querySelector(".first");
 const contactInfo = `
 
 <div  class="formData last">
-<label id="lastName">Nom</label>
+<label for="last-name" id="lastName">Nom</label>
 <input  aria-label="last name" id="last" placeholder="entrer votre nom "   type="text" name="lastName" minlength="2" required/>
 </div>
 <div class="formData email">
-<label id="email">Email</label>
+<label for="email" id="email">Email</label>
 <input  aria-label="email" id="email" placeholder="entrer votre email"  type="email" name="email"
 required/>
 </div>
 <div class="formData message">
-<label id="message" >Votre message</label>
+<label  for="message" id="message" >Votre message</label>
 <textarea  aria-label="message" id="message" placeholder="entrer votre message"  type="text" rows="20" name="message"  required></textarea>
 </div>
 
@@ -179,10 +179,10 @@ function validate() {
 }
 
 ////////// Fonction pour gérer  le bouton de soumission "cest parti"
-function handleFormSubmit(e) {
+function send(e) {
   e.preventDefault();
   function modalConfirmation() {
-    document.removeEventListener("keyup", handleFormSubmit);
+    document.removeEventListener("keyup", send);
     const modalconfirm = `
     <div  id= "modalConfirmation" class="continer_modal">
     <div class="modal-confirmation ">
@@ -219,9 +219,7 @@ function handleFormSubmit(e) {
 }
 
 //ecoute  le click de submit
-document
-  .getElementById("btn-submit")
-  .addEventListener("click", handleFormSubmit);
+document.getElementById("btn-submit").addEventListener("click", send);
 
 /**
  * clavier
@@ -229,7 +227,7 @@ document
 
 document.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
-    handleFormSubmit(e);
+    send(e);
   }
 });
 
