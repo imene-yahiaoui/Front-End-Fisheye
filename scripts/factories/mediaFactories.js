@@ -21,7 +21,7 @@ function generateDomVideo(media) {
   const { video, photographerId, title } = media;
   const videoMedia = `../../assets/images/photos/${photographerId}/${video}`;
   return `<a href="${videoMedia}" class="img-media" data-title="${title}" aria-label="Clickable Link video">
-    <video class="video" src="${videoMedia}" type="video/mp4"></video></a>`;
+    <video class="video"  controls> <source src="${videoMedia}" type="video/mp4"></video></a>`;
 }
 
 function mediaFactory(media) {
