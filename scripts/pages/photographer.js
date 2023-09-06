@@ -15,14 +15,14 @@ function ProfileMedia(media, data) {
    <figure class="media-info">
   ${thisMedia}
      <div class="media-title-like">
-       <figcaption class="media-title">${title}</figcaption>
+       <figcaption class="media-title" aria-label="${title}" >${title}</figcaption>
         <div class="like">
-         <p > ${likes} </p>
-         <button class='hearts' aria-label="likes" ><i class="fa-solid fa-heart"  ></i></button>
+        <p aria-label="${likes}">${likes}</p>
+         <button class='hearts' aria-label="Cœur" ><i class="fa-solid fa-heart"  ></i></button>
         </div>
      </div>
    
-    </figure>
+    </figure> 
     
   `;
   document

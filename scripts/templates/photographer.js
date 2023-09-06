@@ -7,7 +7,7 @@ function photographerTemplate(data) {
     const article = document.createElement("article");
     article.innerHTML = `
       <a href="photographer.html?id=${id}">
-        <img src="${picture}" alt="photographer picture ${name}">
+        <img src="${picture}" alt="la photo de photographe:${name}">
         <h2>${name}</h2>
       </a>
       <span>${city}, </span>

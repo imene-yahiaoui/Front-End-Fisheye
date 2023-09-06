@@ -120,9 +120,9 @@ class Lightbox {
     dom.innerHTML = `
     <div class="lightbox-div">
       <button class="close fa-x"></button>
-      <button class="right"><i class="fa-solid fa-chevron-right"></i></button>
-      <button class="left"><i class="fa-solid fa-chevron-left"></i></button>
-      <div class="lightbox-container">
+      <button class="right" aria-label=" adroit "><i class="fa-solid fa-chevron-right"></i></button>
+      <button class="left"aria-label="agouche "><i class="fa-solid fa-chevron-left"></i></button>
+      <div class="lightbox-container" aria-label="photo de ${title}">
     ${mediaLightbox}    
     <p class="media-title">${title}</p>
       </div>

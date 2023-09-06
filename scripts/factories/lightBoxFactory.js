@@ -6,15 +6,15 @@
  */
 
 function generateLightBoxPhoto(url, title) {
-  return `<img src="${url}" alt="${title}">`;
+  return `<img src="${url}" alt="${title}"  >`;
 }
 /**
  * Génère le balisage HTML pour afficher une vidéo dans la lightbox.
  * @param {string} url - L'URL de la vidéo.
  * @returns {string} - Le balisage HTML pour la vidéo.
  */
-function generateLightBoxVideo(url) {
-  return `<video class="video" controls>
+function generateLightBoxVideo(url,titre) {
+  return `<video class="video" controls  >
   <source src="${url}" type="video/mp4"></video>`;
 }
 /**

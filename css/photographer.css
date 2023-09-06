@@ -33,7 +33,7 @@
   height: auto;
   border-radius: 5px;
   background-color: #db8876;
-  width: 30%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -403,7 +403,10 @@ form textarea {
   overflow: auto;
   transition: opacity.3s;
 }
-
+.btnClose{
+background: transparent;
+border: none;
+}
 /**mediaQueries**/
 
 /* Styles spécifiques aux small pc (jusqu'à 768px de largeur d'écran) */

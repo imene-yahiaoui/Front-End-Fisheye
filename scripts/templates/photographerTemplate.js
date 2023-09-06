@@ -95,7 +95,7 @@ function profile(data) {
 
   const photographerImg = `
     <div id="imagePhotographer">
-      <img  class="photographerImg" src=${picture} alt="photographer picture"></div>
+      <img  class="photographerImg" src=${picture} alt="la photo de photographe:${name}"></div>
     `;
   document
     .getElementById("main_contact")
