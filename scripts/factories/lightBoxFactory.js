@@ -11,10 +11,11 @@ function generateLightBoxPhoto(url, title) {
 /**
  * Génère le balisage HTML pour afficher une vidéo dans la lightbox.
  * @param {string} url - L'URL de la vidéo.
+ * @param {string} title - Le titre ou le texte alternatif pour l'image.
  * @returns {string} - Le balisage HTML pour la vidéo.
  */
-function generateLightBoxVideo(url,titre) {
-  return `<video class="video" controls  >
+function generateLightBoxVideo(url, title) {
+  return `<video class="video" controls aria-label="Lecture vidéo ${title}" >
   <source src="${url}" type="video/mp4"></video>`;
 }
 /**
@@ -25,7 +26,7 @@ function generateLightBoxVideo(url,titre) {
  */
 function LightBoxFactory(url, title) {
   if (url.endsWith(".mp4")) {
-    return generateLightBoxVideo(url);
+    return generateLightBoxVideo(url, title);
   } else {
     return generateLightBoxPhoto(url, title);
   }

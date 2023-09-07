@@ -83,8 +83,6 @@ function ProfileMedia(media, data) {
     
   `;
   document.getElementById("media").insertAdjacentHTML("beforeend", tarifBox);
-}
-//appeler Lightbox.init(), après le chargement du contenu de la page
-window.onload = function () {
+
   Lightbox.init();
-};
+}

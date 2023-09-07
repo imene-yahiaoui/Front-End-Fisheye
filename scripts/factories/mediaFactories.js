@@ -8,7 +8,7 @@ function generateDomPhoto(media) {
   const { image, photographerId, title } = media;
 
   const photo = `../../assets/images/photos/${photographerId}/${image}`;
-  return `<a href="${photo}" class="img-media" data-title="${title}" aria-label="${title}">
+  return `<a href='#' data-src="${photo}" class="img-media" data-title="${title}" aria-label="${title}">
     <img class="mediaImg" src="${photo}" alt="photo de ${title}">
   </a>`;
 }
@@ -20,8 +20,12 @@ function generateDomPhoto(media) {
 function generateDomVideo(media) {
   const { video, photographerId, title } = media;
   const videoMedia = `../../assets/images/photos/${photographerId}/${video}`;
-  return `<a href="${videoMedia}" class="img-media" data-title="${title}" aria-label=" video de ${title}">
-    <video class="video"  controls> <source src=" ${videoMedia}" type="video/mp4"></video></a>`;
+  return `<a href='#' data-src="${videoMedia}" class="img-media" data-title="${title}" aria-label="Vidéo : ${title}">
+    <video class="video"  aria-label="Lecture vidéo : ${title}">
+      <source src="${videoMedia}" type="video/mp4">
+      Votre navigateur ne prend pas en charge la lecture de la vidéo.
+    </video>
+  </a>`;
 }
 
 function mediaFactory(media) {

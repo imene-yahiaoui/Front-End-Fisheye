@@ -189,7 +189,7 @@ form textarea {
   background-color: white;
   z-index: 10;
   overflow: auto;
-  transition: opacity.3s;
+  transition: opacity 0.3s;
 }
 .lightbox-div {
   margin-top: 40px;
@@ -403,9 +403,9 @@ form textarea {
   overflow: auto;
   transition: opacity.3s;
 }
-.btnClose{
-background: transparent;
-border: none;
+.btnClose {
+  background: transparent;
+  border: none;
 }
 /**mediaQueries**/
 

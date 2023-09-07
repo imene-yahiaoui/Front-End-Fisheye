@@ -1,23 +1,19 @@
 //cree le lightbox
 class Lightbox {
   static init() {
-    const links = Array.from(
-      document.querySelectorAll(
-        'a[href$=".png"], a[href$=".jpeg"], a[href$=".jpg"], a[href$=".mp4"]'
-      )
-    );
-    const images = links.map((link) => link.getAttribute("href"));
+    const links = Array.from(document.querySelectorAll("a[data-src]"));
+    const images = links.map((link) => link.getAttribute("data-src"));
     const getAllTitles = Array.from(document.querySelectorAll("a[data-title]"));
-    //recupre tout les titres
+    // Récupérer tous les titres
     const titles = getAllTitles.map((getAllTitle) =>
       getAllTitle.getAttribute("data-title")
     );
     links.forEach((link) =>
       link.addEventListener("click", (e) => {
         e.preventDefault();
-        const href = e.currentTarget.getAttribute("href");
+        const datasrc = e.currentTarget.getAttribute("data-src");
         const title = e.currentTarget.getAttribute("data-title");
-        new Lightbox(href, title, images, titles);
+        new Lightbox(datasrc, title, images, titles);
       })
     );
   }
@@ -102,7 +98,7 @@ class Lightbox {
     const mediaLightbox = this.url.endsWith(".mp4")
       ? `<video class="video" controls>
       <source src="${this.url}" type="video/mp4"> </video>`
-      : `<img src="${this.url}" alt="${this.titles}">`;
+      : `<img src="${this.url}" alt="${this.title}">`;
     const mediaTitle = `<p class="media-title">${this.title}</p>`;
     const lightboxContainer = this.element.querySelector(".lightbox-container");
     lightboxContainer.innerHTML = mediaLightbox + mediaTitle;
@@ -117,6 +113,7 @@ class Lightbox {
     dom.classList.add("lightbox");
 
     const mediaLightbox = LightBoxFactory(url, title);
+
     dom.innerHTML = `
     <div class="lightbox-div">
       <button class="close fa-x"></button>
