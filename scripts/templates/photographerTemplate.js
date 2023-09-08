@@ -51,6 +51,7 @@ const processData = async () => {
     // Triez les médias en fonction du critère actuel
     let sortedMedia = profileData.media;
     if (currentSortCriteria === "Popularité") {
+      console.log("likes:",sortedMedia)
       sortedMedia = sortByLikes(sortedMedia);
     } else if (currentSortCriteria === "Date") {
       sortedMedia = sortByDate(sortedMedia);

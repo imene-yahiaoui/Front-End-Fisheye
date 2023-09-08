@@ -31,8 +31,26 @@ const buttonSelect = document.querySelectorAll(".custom-select-option");
 //les function de filtre
 //par like
 function sortByLikes(mediaArray) {
-  return mediaArray.slice().sort((a, b) => b.likes - a.likes);
+  // Trier les médias par likes décroissants
+let sortedMedia = mediaArray.slice()
+
+  // Mettre à jour les likes à partir du stockage local
+  sortedMedia.forEach((media) => {
+    const mediaId = media.id;  
+    const storedLikes = localStorage.getItem(`likes_${mediaId}`);
+
+    if (storedLikes !== null) {
+      media.likes = parseInt(storedLikes, 10); // Mettre à jour les likes du média à partir du stockage local
+    }
+ 
+  });
+  ///apres recuprer tout les media en active le filtre
+  sortedMedia = mediaArray.slice().sort((a, b) => b.likes - a.likes);
+
+  return sortedMedia;
 }
+
+ 
 //par date la plus recente
 function sortByDate(mediaArray) {
   return mediaArray.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
