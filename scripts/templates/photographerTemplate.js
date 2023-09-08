@@ -59,6 +59,7 @@ const processData = async () => {
     }
 
     sortedMedia.forEach((media) => ProfileMedia(media, photographer));
+    Lightbox.init();
   }
 };
 

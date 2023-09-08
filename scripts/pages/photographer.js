@@ -12,7 +12,7 @@ function ProfileMedia(media, data) {
 
   const thisMedia = mediaFactory(media);
   const mediaPhotographe = `
-   <figure class="media-info">
+   <figure class="media-info"  data-media-id="${id}">
   ${thisMedia}
      <div class="media-title-like">
        <figcaption class="media-title" aria-label="${title}" >${title}</figcaption>
@@ -31,16 +31,34 @@ function ProfileMedia(media, data) {
   //click sur e coeur
 
   const mediaInfoElement = document.querySelectorAll(".media-info");
-
   // Parcourir tous les éléments media-info une seule fois
   mediaInfoElement.forEach((element) => {
+    const mediaId = element.getAttribute("data-media-id");
+
     const like = element.querySelector(".like p");
     const currentLikes = parseInt(like.textContent);
+    const storedLike = localStorage.getItem(`likes_${mediaId}`);
 
     const heartButton = element.querySelector(".hearts");
     heartButton.addEventListener("click", () => {
-      const updatedLikes = currentLikes + 1;
-      like.textContent = updatedLikes.toString();
+      if (storedLike === null) {
+        const updatedLikes = currentLikes + 1;
+        like.textContent = updatedLikes.toString();
+        // Mettre à jour le stockage local
+        localStorage.setItem(`likes_${mediaId}`, updatedLikes.toString());
+      }
+    });
+    // Récupérer le nombre de likes depuis le stockage local lors du chargement de la page
+    const storedLikes = localStorage.getItem(`likes_${mediaId}`);
+    if (storedLikes !== null) {
+      like.textContent = storedLikes;
+    }
+    // Supprimer les données du localStorage avant le rafraîchissement de la page
+    window.addEventListener("beforeunload", () => {
+      mediaInfoElements.forEach((element) => {
+        const mediaId = element.getAttribute("data-media-id");
+        localStorage.removeItem(`likes_${mediaId}`);
+      });
     });
   });
 
@@ -83,6 +101,4 @@ function ProfileMedia(media, data) {
     
   `;
   document.getElementById("media").insertAdjacentHTML("beforeend", tarifBox);
-
-  Lightbox.init();
 }
