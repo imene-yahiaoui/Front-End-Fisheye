@@ -96,6 +96,7 @@ form input {
   height: 68px;
   border: none;
   border-radius: 5px;
+  padding-left: 21px;
 }
 form textarea {
   height: 170px;
